@@ -1,0 +1,9 @@
+# ignore ide files
+.idea/
+.vscode/
+# ignore virtual environment
+venv/
+# ignore python cache
+__pycache__/
+# ignore logs
+logs/
