@@ -78,8 +78,10 @@ def fetch_product_details(url):
     product_details['description'] = json_product_data.get('description', '')
     product_details['vendor'] = json_product_data.get('vendor', '')
     product_details['type'] = json_product_data.get('type', '')
-    categories = [(link.get_text(strip=True), link['href']) for link in
-                  soup.find('p', itemprop='cat', class_='product-single__cat').find_all('a')]
+
+    categories = [link.get_text(strip=True).rstrip(',') for link in
+              soup.find('p', itemprop='cat', class_='product-single__cat').find_all('a')]
+
     product_details['categories'] = categories
     product_details['tags'] = json_product_data.get('tags', [])
     product_details['price'] = f"{json_product_data.get('price', 0) / 100:.2f}"
